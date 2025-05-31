@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your-name
+      changes:
+        - createTable:
+            tableName: sms
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: to_number
+                  type: VARCHAR(255)
+              - column:
+                  name: from_number
+                  type: VARCHAR(255)
+              - column:
+                  name: size
+                  type: INT
+              - column:
+                  name: parts
+                  type: INT
+              - column:
+                  name: sent_date
+                  type: datetime
+              - column:
+                  name: created_by
+                  type: varchar(100)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: last_modified_by
+                  type: varchar(100)
+              - column:
+                  name: last_modified_date
+                  type: timestamp
+  - changeSet:
+      id: 2
+      author: your-name
+      changes:
+        - createTable:
+            tableName: sms_configuration
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: max_sms_length
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: suffix_template
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: varchar(100)
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: last_modified_by
+                  type: varchar(100)
+              - column:
+                  name: last_modified_date
+                  type: timestamp
+
+        - insert:
+            tableName: sms_configuration
+            columns:
+              - column:
+                  name: max_sms_length
+                  value: 160
+              - column:
+                  name: suffix_template
+                  value: "... - Part %d of %d"
+              - column:
+                  name: created_by
+                  value: "system_user"
+              - column:
+                  name: created_at
+                  valueDate: "2025-05-30T12:00:00"
+              - column:
+                  name: last_modified_by
+                  value: "system_user"
+              - column:
+                  name: last_modified_date
+                  valueDate: "2025-05-30T12:00:00"
